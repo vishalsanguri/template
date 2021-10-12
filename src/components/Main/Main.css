@@ -1,0 +1,78 @@
+.main{
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    height: calc(100vh - 50px);
+}
+.repo-container{
+    width: 30vw;
+    min-height: calc(100vh - 50px);
+    position: relative;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    border: 1px solid green;
+}
+.repo-details{
+    width: 70vw;
+    overflow-y: scroll;
+    border: 1px solid pink;
+}
+.add-repo-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    border: 1px solid rgb(255, 166, 0);
+    left: 10px;
+    background-color: rgb(236, 194, 115);
+}
+.delete-repo{
+    padding:10px 0px;
+    display: flex;
+    justify-content: end;
+}
+.delete-btn{
+    background-color: white;
+    border: 1px solid black;
+    width: 100px;
+    height: 30px;
+}
+.content-holder{
+    border: 1px solid red;
+}
+.unique-repo{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    border: 1px solid rgb(92, 92, 92);
+    padding: 10px 5px;
+}
+.unique-repo:hover{
+    background-color: rgb(151, 151, 151);
+}
+.branches-container{
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+.issues-container{
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+.bottom-border{
+    border-bottom: 1px solid transparent;
+}
+.flex{
+    display: flex;
+}
