@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Addrepo.css";
+import Closebtn from "../Assests/cancel.png";
 
 export default function Addrepo({ setShow, setRepo, repo }) {
   const [data, setData] = useState({ owner: "", reponame: "" });
@@ -35,6 +36,9 @@ export default function Addrepo({ setShow, setRepo, repo }) {
           <button className="repo-add-final" onClick={fetchdata}>
             Add
           </button>
+          <div className="close-btn-1" onClick={() => setShow(false)}>
+            <img src={Closebtn} alt="close" width="20px" height="20px" />
+          </div>
         </div>
       </div>
     </>

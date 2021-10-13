@@ -1,0 +1,15 @@
+.commits-container{
+    height: 100%;
+    overflow-y: scroll;
+    border-top: 1px solid transparent;
+    background-color:rgb(226, 226, 226);
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.close-button{
+    width: 20px;
+    height: 20px;
+}

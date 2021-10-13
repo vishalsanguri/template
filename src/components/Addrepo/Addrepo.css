@@ -3,7 +3,7 @@
     border: 1px solid red;
     display: flex;
     border: 1px solid black;
-    
+    position: relative;
     background-color: white;
     align-items: center;
     justify-content: center;
@@ -33,4 +33,10 @@ input:focus{
     align-items: center;
     justify-content: center;
     background-color:rgba(0, 0, 0, 0.452);
+}
+.close-btn-1{
+    position: absolute;
+    top: 0%;
+    right: 0;
+
 }

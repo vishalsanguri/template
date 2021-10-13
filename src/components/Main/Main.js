@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
+import { Route, useRouteMatch, Switch } from "react-router-dom";
 import Add from "../Assests/plus.png";
+import Branches from "../Branches/Branches";
+import Issues from "../Issues/Issues";
+import Commits from "../Commits/Commits";
 
 export default function Main({ setShow, setRepo, repo }) {
   const [selectedRepo, setSelectedRepo] = useState([]);
-  const [border, setBorder] = useState(false);
+  const [branches, setBranches] = useState([]);
+  const [issues, setIssues] = useState([]);
+  const [border, setBorder] = useState(true);
   function deleteSelected() {
     if (selectedRepo.length === 0) {
       return;
@@ -14,9 +20,40 @@ export default function Main({ setShow, setRepo, repo }) {
       });
       setRepo(newarray);
       setSelectedRepo([]);
+      setIssues([]);
+      setBranches([]);
     }
   }
-  function borderBottom() {}
+  var trimmed;
+  var trimmed1;
+  if (selectedRepo.length !== 0) {
+    const selectedrepobranches = selectedRepo[0].branches_url;
+    const selectedrepobranches1 = selectedRepo[0].issues_url;
+    trimmed = selectedrepobranches.replace("{/branch}", "");
+    trimmed1 = selectedrepobranches1.replace("{/number}", "");
+    console.log(trimmed);
+    console.log(trimmed1);
+  }
+  useEffect(() => {
+    fetch(`${trimmed}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setBranches(data);
+      });
+    fetch(`${trimmed1}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setIssues(data);
+      });
+  }, [selectedRepo]);
+  function borderBottom() {
+    setBorder(true);
+  }
+  function borderBottom1() {
+    setBorder(false);
+  }
   return (
     <div className="main">
       <div className="repo-container scrollbar-hidden">
@@ -27,10 +64,12 @@ export default function Main({ setShow, setRepo, repo }) {
                   className="unique-repo scrollbar-hidden"
                   key={i}
                   onClick={() => {
+                    repo.filter((re) => {});
                     setSelectedRepo([repository]);
                   }}
                 >
-                  {repository.name}
+                  <h3> {repository.name}</h3>
+                  {repository.description}
                 </div>
               );
             })
@@ -57,16 +96,33 @@ export default function Main({ setShow, setRepo, repo }) {
         </div>
         <div className="flex">
           <div
-            className="branches-container"
+            className={
+              border ? "bottom-border branches-container" : "branches-container"
+            }
             onClick={() => {
               borderBottom();
             }}
           >
             Branches
           </div>
-          <div className="issues-container">Issues</div>
+          <div
+            className={
+              border ? "issues-container" : "bottom-border issues-container"
+            }
+            onClick={() => {
+              borderBottom1();
+            }}
+          >
+            Issues
+          </div>
         </div>
-        <div className="content-holder">content</div>
+        <div className="content-holder scrollbar-hidden">
+          {border ? (
+            <Branches branches={branches} />
+          ) : (
+            <Issues issues={issues} />
+          )}
+        </div>
       </div>
     </div>
   );

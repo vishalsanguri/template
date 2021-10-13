@@ -1,0 +1,10 @@
+.branch-box{
+    height: 50px;
+    display: flex;
+    padding: 0px 10px ;
+    border: 1px solid black;
+    align-items: center;
+}
+.branch-box:hover{
+    background-color: white;
+}
