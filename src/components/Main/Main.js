@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
-import { Route, useRouteMatch, Switch } from "react-router-dom";
+import {
+  Route,
+  useRouteMatch,
+  Switch,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
 import Add from "../Assests/plus.png";
 import Branches from "../Branches/Branches";
 import Issues from "../Issues/Issues";
 import Commits from "../Commits/Commits";
 
 export default function Main({ setShow, setRepo, repo }) {
+  const { path, url } = useRouteMatch();
+  const history = useHistory();
+  console.log(path, url);
   const [selectedRepo, setSelectedRepo] = useState([]);
   const [branches, setBranches] = useState([]);
   const [issues, setIssues] = useState([]);
@@ -23,6 +32,9 @@ export default function Main({ setShow, setRepo, repo }) {
       setIssues([]);
       setBranches([]);
     }
+  }
+  function pass() {
+    history.push("/add");
   }
   var trimmed;
   var trimmed1;
@@ -117,11 +129,18 @@ export default function Main({ setShow, setRepo, repo }) {
           </div>
         </div>
         <div className="content-holder scrollbar-hidden">
-          {border ? (
-            <Branches branches={branches} />
-          ) : (
-            <Issues issues={issues} />
-          )}
+          <Switch>
+            <Route exact path="/">
+              {border ? (
+                <Branches branches={branches} />
+              ) : (
+                <Issues issues={issues} />
+              )}
+            </Route>
+            <Route path="/add">
+              <Commits />
+            </Route>
+          </Switch>
         </div>
       </div>
     </div>

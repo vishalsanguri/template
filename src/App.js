@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route path="/">
           <div className="App">
             <Header />
             <Main setShow={setShow} setRepo={setRepo} repo={repo} />

@@ -13,6 +13,7 @@ export default function Commits() {
         }}
       >
         <img src={Close} alt="close" width="20px" height="20px" />
+        hi
       </div>
     </div>
   );
